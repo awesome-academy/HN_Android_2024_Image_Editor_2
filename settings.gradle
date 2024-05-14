@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Android-template"
+rootProject.name = "ImageEditor2"
 include ':app'
