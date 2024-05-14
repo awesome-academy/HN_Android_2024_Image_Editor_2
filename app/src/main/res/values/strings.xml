@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Android-template</string>
+    <string name="api_default_error">Error</string>
+    <string name="str_authen">Login session has expired</string>
+    <string name="text_all_has_error_network">Network Error</string>
+    <string name="loading">loading</string>
 </resources>

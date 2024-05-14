@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Image Editor2</string>
+    <string name="api_default_error">Có lỗi xảy ra</string>
+    <string name="str_authen">Phiên đăng nhập đã hết hạn</string>
+    <string name="text_all_has_error_network">Lỗi kết nối mạng\n</string>
+    <string name="loading">Đang tải</string>
+</resources>
