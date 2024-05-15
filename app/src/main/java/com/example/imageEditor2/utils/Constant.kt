@@ -5,6 +5,8 @@ import com.example.imageEditor2.BuildConfig
 const val BASE_URL_API = BuildConfig.BASE_URL_API
 const val BASE_URL = BuildConfig.BASE_URL
 const val CONTENT_TYPE = "Content-Type"
+const val RETROFIT = "Retrofit"
+const val RETROFIT_AUTHORIZE = "Retrofit_Authorize"
 const val ACCEPT = "Accept"
 const val ACCEPT_LANGUAGE = "Accept-Language"
 const val AUTHORIZATION = "Authorization"

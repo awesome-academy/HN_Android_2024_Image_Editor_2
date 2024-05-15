@@ -1,5 +1,6 @@
-package com.example.imageEditor.base
+package com.example.imageEditor2.base
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,13 +13,13 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.example.imageEditor2.R
-import com.example.imageEditor2.base.BaseViewModel
+import com.example.imageEditor2.ui.authorize.AuthorizeActivity
 
 abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     private var _binding: VB? = null
     val binding get() = _binding
 
-    lateinit var viewModel: BaseViewModel
+    private lateinit var viewModel: BaseViewModel
 
     private val loadingDialog by lazy { setupProgressDialog() }
 
@@ -39,8 +40,8 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     ) {
         super.onViewCreated(view, savedInstanceState)
         defaultObserve()
-        initData()
         initListener()
+        observeData()
     }
 
     abstract fun getViewBinding(inflater: LayoutInflater): VB
@@ -49,9 +50,9 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
 
     abstract fun initView()
 
-    abstract fun initData()
-
     abstract fun initListener()
+
+    abstract fun observeData()
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -68,6 +69,11 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
         }
         viewModel.errorMessage.observe(viewLifecycleOwner) {
             Toast.makeText(requireContext(), getString(it), Toast.LENGTH_SHORT).show()
+            if (it == R.string.un_authorize) {
+                val intent = Intent(requireContext(), AuthorizeActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+            }
         }
         viewModel.responseMessage.observe(viewLifecycleOwner) {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()

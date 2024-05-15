@@ -12,13 +12,14 @@ import com.example.imageEditor2.utils.BASE_URL_API
 import com.example.imageEditor2.utils.CONTENT_TYPE
 import com.example.imageEditor2.utils.PREF_ACCESS_TOKEN
 import okhttp3.OkHttpClient
+import okhttp3.Protocol
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object NetworkModule {
-    var mToken = ""
+    private var mToken = ""
     private const val TIME_OUT: Long = 10
     private var mLanguage = "vi"
 
@@ -34,6 +35,7 @@ object NetworkModule {
         }
 
         val httpClient = OkHttpClient.Builder()
+        httpClient.protocols(listOf(Protocol.HTTP_2, Protocol.HTTP_1_1))
         httpClient.connectTimeout(TIME_OUT, TimeUnit.SECONDS)
         httpClient.readTimeout(TIME_OUT, TimeUnit.SECONDS)
 
