@@ -20,8 +20,8 @@ class AuthorizeViewModel(
     private val authorizeRepository: AuthorizeRepository,
     private val sharePref: MyPreference,
 ) : BaseViewModel() {
-    private val _authorizeLiveData = MutableLiveData<AuthorizeResponse>()
-    val authorizeLiveData: LiveData<AuthorizeResponse> = _authorizeLiveData
+    private val mAuthorizeLiveData = MutableLiveData<AuthorizeResponse>()
+    val authorizeLiveData: LiveData<AuthorizeResponse> = mAuthorizeLiveData
 
     fun authorize(authorizationCode: String) {
         viewModelScope.launch {
@@ -37,7 +37,7 @@ class AuthorizeViewModel(
                 .onCompletion { hideLoading() }
                 .collect {
                     sharePref.saveToken(it.accessToken)
-                    _authorizeLiveData.postValue(it)
+                    mAuthorizeLiveData.postValue(it)
                 }
         }
     }

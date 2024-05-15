@@ -1,11 +1,16 @@
 package com.example.imageEditor2.module
 
 import com.example.imageEditor2.MyPreference
+import com.example.imageEditor2.download.DownloadService
+import com.example.imageEditor2.download.DownloadServiceImpl
 import com.example.imageEditor2.repository.authorize.AuthorizeRepository
 import com.example.imageEditor2.repository.authorize.AuthorizeRepositoryImpl
+import com.example.imageEditor2.repository.detail.DetailRepository
+import com.example.imageEditor2.repository.detail.DetailRepositoryImpl
 import com.example.imageEditor2.repository.home.HomeRepository
 import com.example.imageEditor2.repository.home.HomeRepositoryImpl
 import com.example.imageEditor2.ui.authorize.AuthorizeViewModel
+import com.example.imageEditor2.ui.detail.DetailViewModel
 import com.example.imageEditor2.ui.home.HomeViewModel
 import com.example.imageEditor2.ui.main.MainViewModel
 import com.example.imageEditor2.utils.RETROFIT
@@ -26,13 +31,18 @@ val myModule =
         // SharePreference
         single { MyPreference(androidContext()) }
 
+        // Download
+        single<DownloadService> { DownloadServiceImpl(androidContext()) }
+
         // Repository Module
         single<AuthorizeRepository> { AuthorizeRepositoryImpl(get()) }
         single<HomeRepository> { HomeRepositoryImpl(get()) }
+        single<DetailRepository> { DetailRepositoryImpl(get()) }
 
         viewModel {
             AuthorizeViewModel(get(), get())
         }
         viewModel { MainViewModel() }
         viewModel { HomeViewModel(get()) }
+        viewModel { DetailViewModel(get()) }
     }

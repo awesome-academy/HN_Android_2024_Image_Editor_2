@@ -1,13 +1,16 @@
 package com.example.imageEditor2.ui.home
 
+import android.content.Intent
 import android.view.LayoutInflater
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.imageEditor2.base.BaseFragment
 import com.example.imageEditor2.base.BaseViewModel
 import com.example.imageEditor2.databinding.FragmentHomeBinding
+import com.example.imageEditor2.ui.detail.ImageDetailActivity
 import com.example.imageEditor2.ui.home.adapter.CollectionAdapter
 import com.example.imageEditor2.ui.home.adapter.OnClickImage
+import com.example.imageEditor2.utils.URL
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnClickImage {
@@ -56,7 +59,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnClickImage {
     }
 
     override fun clickImage(url: String) {
-        // TODO : go to DetailActivity
+        val intent = Intent(requireContext(), ImageDetailActivity::class.java)
+        intent.putExtra(URL, url)
+        startActivity(intent)
     }
 
     override fun doubleTapForLikeImage(id: String) {
