@@ -13,8 +13,8 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val homeRepository: HomeRepository) : BaseViewModel() {
-    private val _collectionsLiveData = MutableLiveData<List<CollectionModel>>()
-    val collectionsLiveData: LiveData<List<CollectionModel>> = _collectionsLiveData
+    private val mCollectionsLiveData = MutableLiveData<List<CollectionModel>>()
+    val collectionsLiveData: LiveData<List<CollectionModel>> = mCollectionsLiveData
 
     init {
         getCollections()
@@ -25,7 +25,7 @@ class HomeViewModel(private val homeRepository: HomeRepository) : BaseViewModel(
             homeRepository.getCollections(page).onStart { showLoading() }
                 .catch { handleApiError(it) }.onCompletion { hideLoading() }
                 .collect {
-                    _collectionsLiveData.postValue(it)
+                    mCollectionsLiveData.postValue(it)
                 }
         }
     }
