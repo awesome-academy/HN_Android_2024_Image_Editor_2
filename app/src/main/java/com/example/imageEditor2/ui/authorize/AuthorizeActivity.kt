@@ -1,14 +1,17 @@
 package com.example.imageEditor2.ui.authorize
 
+import android.content.Intent
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.Toast
 import com.example.imageEditor.base.BaseActivity
 import com.example.imageEditor2.databinding.ActivityAuthorizeBinding
+import com.example.imageEditor2.ui.main.MainActivity
+import com.example.imageEditor2.utils.AUTHORIZE_DATA
 import com.example.imageEditor2.utils.SIGN_OF_AUTHORIZE
 import com.example.imageEditor2.utils.authorizeUrl
 import com.example.imageEditor2.utils.toAuthorizationCode
+import com.google.gson.Gson
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AuthorizeActivity : BaseActivity<ActivityAuthorizeBinding>() {
@@ -42,7 +45,10 @@ class AuthorizeActivity : BaseActivity<ActivityAuthorizeBinding>() {
 
     override fun observeData() {
         viewModel.authorizeLiveData.observe(this) {
-            Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra(AUTHORIZE_DATA, Gson().toJson(it))
+            startActivity(intent)
+            finish()
         }
     }
 }
