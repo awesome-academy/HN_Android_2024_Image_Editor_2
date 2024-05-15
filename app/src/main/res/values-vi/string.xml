@@ -5,4 +5,21 @@
     <string name="str_authen">Phiên đăng nhập đã hết hạn</string>
     <string name="text_all_has_error_network">Lỗi kết nối mạng\n</string>
     <string name="loading">Đang tải</string>
+    <string name="home">Trang chủ</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="add">Tạo</string>
+    <string name="like">Yêu thích</string>
+    <string name="avatar">Hình đại diện</string>
+    <string name="liked_by_others"><![CDATA[Thích bởi <b>%s người</b>]]></string>
+    <string name="shop">Cửa hàng</string>
+    <string name="style">Style</string>
+    <string name="igtv">IGTV</string>
+    <string name="auto">Auto</string>
+    <string name="sports">Sports</string>
+    <string name="save_success">Đã lưu</string>
+    <string name="downloading">Đang tải…</string>
+    <string name="contrast">Contrast</string>
+    <string name="brightness">Brightness</string>
+    <string name="un_authorize">Phiên đăng nhập đã hết hạn</string>
+    <string name="empty_favorite_image">Chưa có hình ảnh yêu thích</string>
 </resources>
