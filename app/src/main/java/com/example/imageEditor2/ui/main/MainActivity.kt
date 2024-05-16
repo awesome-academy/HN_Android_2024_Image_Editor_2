@@ -13,6 +13,7 @@ import com.example.imageEditor2.ui.create.CreateImageFragment
 import com.example.imageEditor2.ui.favorite.FavoriteFragment
 import com.example.imageEditor2.ui.home.HomeFragment
 import com.example.imageEditor2.ui.search.SearchFragment
+import com.example.imageEditor2.utils.AUTHORIZE_DATA
 import com.example.imageEditor2.utils.CREATE_INDEX
 import com.example.imageEditor2.utils.FAVORITE_INDEX
 import com.example.imageEditor2.utils.HOME_INDEX
@@ -28,11 +29,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             lifecycle,
         )
     }
+    private val mAuthorizeData by lazy {
+        intent.getStringExtra(AUTHORIZE_DATA)
+    }
 
     private val mHomeFragment by lazy { HomeFragment() }
     private val mSearchFragment by lazy { SearchFragment() }
     private val mCreateImageFragment by lazy { CreateImageFragment() }
-    private val mFavouriteFragment by lazy { FavoriteFragment() }
+    private val mFavouriteFragment by lazy { FavoriteFragment.newInstance(mAuthorizeData ?: "") }
 
     override fun getViewBinding(): ActivityMainBinding {
         return ActivityMainBinding.inflate(layoutInflater)

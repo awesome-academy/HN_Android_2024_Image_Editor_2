@@ -1,8 +1,15 @@
 package com.example.imageEditor2
 
 import com.example.imageEditor2.model.CollectionModel
+import com.example.imageEditor2.model.PhotoModel
+import com.example.imageEditor2.model.PhotoSearchModel
 import com.example.imageEditor2.utils.COLLECTION_ENDPOINT
+import com.example.imageEditor2.utils.ID
+import com.example.imageEditor2.utils.NAME
 import com.example.imageEditor2.utils.PAGE
+import com.example.imageEditor2.utils.PER_PAGE
+import com.example.imageEditor2.utils.PHOTO_SEARCH_ENDPOINT
+import com.example.imageEditor2.utils.QUERY_SEARCH
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -15,20 +22,26 @@ interface Api {
         @Query(PAGE) page: Int,
     ): List<CollectionModel>
 
-    @GET
+    @GET(PHOTO_SEARCH_ENDPOINT)
     suspend fun searchPhotos(
-        @Query("page") page: String,
-        @Query("query") querySearch: String,
-    )
+        @Query(PAGE) page: Int,
+        @Query(QUERY_SEARCH) querySearch: String,
+        @Query(PER_PAGE) perPage: Int = 10,
+    ): PhotoSearchModel
 
     @POST("photos/{id}/like")
     suspend fun likeImage(
-        @Path("id") id: String,
+        @Path(ID) id: String,
     )
 
-    @DELETE
-    suspend fun dislikeImage()
+    @DELETE("photos/{id}/like")
+    suspend fun dislikeImage(
+        @Path(ID) id: String,
+    )
 
-    @GET
-    suspend fun getFavoriteList()
+    @GET("users/{name}/likes")
+    suspend fun getFavoriteList(
+        @Path(NAME) name: String,
+        @Query(PAGE) page: Int,
+    ): List<PhotoModel>
 }
