@@ -35,4 +35,6 @@ const val RANGE_CONTRAST_AND_BRIGHTNESS = 10f
 const val SIGN_OF_AUTHORIZE = "authorize/native?code"
 const val AUTHORIZE_DATA = "AUTHORIZE_DATA"
 const val DEFAULT_EMOJI_SIZE = 48f
-const val TIME_OUT = 10000
+const val DATABASE_NAME = "imageEditor_database"
+const val ID = "id"
+const val NAME = "name"
