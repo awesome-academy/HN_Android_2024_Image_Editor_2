@@ -48,6 +48,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), OnClickImage {
                 }
             },
         )
+
+        binding?.refreshLayout?.setOnRefreshListener {
+            mPageQuery = 0
+            mAdapter.submitList(null)
+            viewModel.getCollections(mPageQuery)
+            binding?.refreshLayout?.isRefreshing = false
+        }
     }
 
     override fun observeData() {
